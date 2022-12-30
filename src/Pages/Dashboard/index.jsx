@@ -29,7 +29,7 @@ const Dashboard = () => {
               <CategoryChart />
               <TimeChart />
             </FlexBetween>
-            <FlexBetween flexGrow={1}>
+            <FlexBetween>
               <TopMovies />
               <Movies />
             </FlexBetween>

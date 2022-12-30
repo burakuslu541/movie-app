@@ -82,7 +82,7 @@ const Movies = () => {
         borderRadius: 1,
         boxShadow: 1,
         p: '10px 20px',
-        width: '900px',
+        width: '950px',
         ml: '14px',
         mt: '20px',
       }}
