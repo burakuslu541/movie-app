@@ -22,7 +22,7 @@ const style = {
   p: 4,
 };
 
-const ParentModal = ({ title, year, rating }) => {
+const ParentModal = ({ title, year }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -55,8 +55,7 @@ const ParentModal = ({ title, year, rating }) => {
             id="modal-modal-description"
             sx={{ mt: 2, color: 'rgb(216, 216, 216)' }}
           >
-            This movie named {title} has a rating of {rating} and was
-            made in {year}.
+            This movie named {title} was made in {year}.
           </Typography>
         </Box>
       </Modal>
