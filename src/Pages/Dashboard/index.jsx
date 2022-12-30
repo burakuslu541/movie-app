@@ -5,6 +5,7 @@ import FlexBetween from 'Components/FlexBetween';
 import CategoryChart from 'Pages/Dashboard/CategoryChart';
 import TimeChart from 'Pages/Dashboard/TimeChart';
 import TopMovies from 'Pages/Dashboard/TopMovies';
+import Activities from 'Pages/Dashboard/Activities';
 import Movies from './Movies';
 
 const Dashboard = () => {
@@ -25,23 +26,17 @@ const Dashboard = () => {
         <FlexBetween>
           <Box>
             <FlexBetween>
-              <Box>
-                <CategoryChart />
-              </Box>
-              <Box>
-                <TimeChart />
-              </Box>
+              <CategoryChart />
+              <TimeChart />
             </FlexBetween>
-            <FlexBetween>
-              <Box>
-                <TopMovies />
-              </Box>
-              <Box>
-                <Movies />
-              </Box>
+            <FlexBetween flexGrow={1}>
+              <TopMovies />
+              <Movies />
             </FlexBetween>
           </Box>
-          <Box>e</Box>
+          <Box>
+            <Activities />
+          </Box>
         </FlexBetween>
       </FlexBetween>
     </Box>

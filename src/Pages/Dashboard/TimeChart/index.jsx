@@ -53,11 +53,11 @@ const TimeChart = () => {
   return (
     <Box
       sx={{
+        width: '100%',
         backgroundColor: 'white',
         borderRadius: 1,
         boxShadow: 1,
         p: '10px 20px',
-        width: '600px',
         ml: '20px',
       }}
     >
