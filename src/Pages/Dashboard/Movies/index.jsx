@@ -14,13 +14,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ParentModal from 'Components/Modal';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useEffect } from 'react';
 
 const Movies = () => {
   const theme = useTheme();
-  const dispatch = useDispatch();
   const [movies, setMovies] = useState([]);
   const [selectedName, setSelectedName] = useState('Batman');
   const [selectedYear, setSelectedYear] = useState(null);

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import Header from 'Components/Header';
-import { Container, Grid, useTheme } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import CategoryChart from 'Pages/Dashboard/CategoryChart';
 import TimeChart from 'Pages/Dashboard/TimeChart';
 import TopMovies from 'Pages/Dashboard/TopMovies';
 import Activities from 'Pages/Dashboard/Activities';
 import Movies from './Movies';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Dashboard = () => {
   const [size, setSize] = React.useState(window.innerWidth);
