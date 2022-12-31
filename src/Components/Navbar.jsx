@@ -1,7 +1,6 @@
 import React from 'react';
 import { Search } from '@mui/icons-material';
 import FlexBetween from 'Components/FlexBetween';
-import { useDispatch } from 'react-redux';
 import profileImage from 'assets/images/profile.png';
 import {
   AppBar,
@@ -11,15 +10,16 @@ import {
   InputBase,
   Toolbar,
   useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useSelector } from 'react-redux';
+import { InfoModal } from './Modal';
 
 const Navbar = () => {
   const { global } = useSelector((state) => state);
-
-  const dispatch = useDispatch();
   const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <AppBar
@@ -32,7 +32,6 @@ const Navbar = () => {
       <Toolbar
         sx={{
           justifyContent: 'space-between',
-          height: '70px',
           backgroundColor: theme.palette.background.paper,
         }}
       >
@@ -42,9 +41,18 @@ const Navbar = () => {
             backgroundColor={theme.palette.background.alt}
             borderRadius="5px"
             gap="5px"
-            width="214px"
             height="30px"
             border="1px solid rgba(76, 141, 235, 0.1865)"
+            sx={{
+              width: {
+                xs: '100%',
+                sm: '100%',
+                md: '214px',
+                lg: '214px',
+                xl: '214px',
+                xxl: '214px',
+              },
+            }}
           >
             <IconButton
               sx={{
@@ -58,29 +66,44 @@ const Navbar = () => {
         </FlexBetween>
 
         {/* RIGHT SIDE */}
-        <FlexBetween gap="1.5rem">
-          <Box
-            sx={{
-              mr: '90px',
-            }}
-          >
-            <Typography
+        <FlexBetween
+          sx={{
+            gap: {
+              xs: '10px',
+              sm: '10px',
+              md: '1.5rem',
+            },
+          }}
+        >
+          {matches ? (
+            <InfoModal
+              count={global.reviewedMovieCount}
+              name={global.reviewedMovieName}
+            />
+          ) : (
+            <Box
               sx={{
-                fontSize: '14px',
-                color: 'rgba(216, 216, 216, 1)',
+                mr: '90px',
               }}
             >
-              Reviewed Movies Count: {global.reviewedMovieCount}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '14px',
-                color: 'rgba(216, 216, 216, 1)',
-              }}
-            >
-              Last Reviewed Movie: {global.reviewedMovieName}
-            </Typography>
-          </Box>
+              <Typography
+                sx={{
+                  fontSize: '14px',
+                  color: 'rgba(216, 216, 216, 1)',
+                }}
+              >
+                Reviewed Movies Count: {global.reviewedMovieCount}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '14px',
+                  color: 'rgba(216, 216, 216, 1)',
+                }}
+              >
+                Last Reviewed Movie: {global.reviewedMovieName}
+              </Typography>
+            </Box>
+          )}
           <IconButton>
             <NotificationsIcon
               sx={{
@@ -95,9 +118,20 @@ const Navbar = () => {
               component="img"
               alt="profile"
               src={profileImage}
-              height="40px"
-              width="40px"
-              sx={{ objectFit: 'cover', ml: '5px' }}
+              sx={{
+                objectFit: 'cover',
+                ml: '5px',
+                width: {
+                  xs: '30px',
+                  sm: '30px',
+                  md: '40px',
+                },
+                height: {
+                  xs: '30px',
+                  sm: '30px',
+                  md: '40px',
+                },
+              }}
             />
           </FlexBetween>
         </FlexBetween>

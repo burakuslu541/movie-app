@@ -2,16 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { MenuItem, Select } from '@mui/material';
 import FlexBetween from 'Components/FlexBetween';
 import { useState, useCallback } from 'react';
-import {
-  PieChart,
-  Pie,
-  Sector,
-  Cell,
-  Label,
-  ResponsiveContainer,
-  Tooltip,
-  Legend,
-} from 'recharts';
+import { PieChart, Pie, Cell, Label } from 'recharts';
 import Badge from '@mui/material/Badge';
 const COLORS = ['#4C8DEB', '#5AD6B0', '#FFAB49', '#EE5D70'];
 const dataJson = {
@@ -78,14 +69,13 @@ const CategoryChart = () => {
         borderRadius: 1,
         boxShadow: 1,
         p: '10px 20px',
-        width: '600px',
-        ml: '14px',
+        mb: '20px',
+        height: '351px',
       }}
     >
       <FlexBetween
         sx={{
           width: '100%',
-          mt: '19px',
         }}
       >
         <Typography variant="h6">Categories</Typography>
@@ -110,43 +100,40 @@ const CategoryChart = () => {
 
       <Box
         sx={{
-          alignItems: 'center',
           display: 'flex',
-          height: 350,
           justifyContent: 'center',
-          width: '100%',
+          alignItems: 'center',
+          height: '270px',
         }}
       >
-        <ResponsiveContainer>
-          <PieChart width={200} height={200}>
-            <Pie
-              activeIndex={activeIndex}
-              data={chartValue}
-              innerRadius={60}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-              onMouseEnter={onPieEnter}
-            >
-              {chartValue.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-              <Label width={100} fontSize="26px" position="center">
-                {chartValue[activeIndex].value}
-              </Label>
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
+        <PieChart width={200} height={200}>
+          <Pie
+            activeIndex={activeIndex}
+            data={chartValue}
+            innerRadius={85}
+            outerRadius={100}
+            fill="#8884d8"
+            dataKey="value"
+            onMouseEnter={onPieEnter}
+          >
+            {chartValue.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+            <Label width={100} fontSize="26px" position="center">
+              {chartValue[activeIndex].value}
+            </Label>
+          </Pie>
+        </PieChart>
       </Box>
       <FlexBetween
         sx={{
           width: '100%',
         }}
       >
-        <Typography fonstSize="12px" mr="5px">
+        <Typography fontSize="12px" mr="5px">
           <Badge
             badgeContent=" "
             sx={{
@@ -159,7 +146,7 @@ const CategoryChart = () => {
           ></Badge>
           Action
         </Typography>
-        <Typography fonstSize="12px" mr="5px">
+        <Typography fontSize="12px" mr="5px">
           <Badge
             badgeContent=" "
             sx={{
@@ -172,7 +159,7 @@ const CategoryChart = () => {
           ></Badge>
           Comedy
         </Typography>
-        <Typography fonstSize="12px" mr="5px">
+        <Typography fontSize="12px" mr="5px">
           <Badge
             badgeContent=" "
             sx={{
@@ -185,7 +172,7 @@ const CategoryChart = () => {
           ></Badge>
           Romantic
         </Typography>
-        <Typography fonstSize="12px" mr="5px">
+        <Typography fontSize="12px" mr="5px">
           <Badge
             badgeContent=" "
             sx={{

@@ -13,6 +13,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import ArticleIcon from '@mui/icons-material/Article';
 import SellIcon from '@mui/icons-material/Sell';
+import { useEffect } from 'react';
 
 const navItems = [
   {
@@ -32,10 +33,15 @@ const navItems = [
     icon: <SellIcon />,
   },
 ];
+
 const Sidebar = ({ drawerWidth }) => {
   const [active, setActive] = useState('');
   const navigate = useNavigate();
   const theme = useTheme();
+  useEffect(() => {
+    const lcText = navItems[0].text.toLowerCase();
+    setActive(lcText);
+  }, []);
   return (
     <Box component="nav">
       <Drawer

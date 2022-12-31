@@ -8,7 +8,7 @@ export const tokensLight = {
     black: '#000000',
     info: '#FFAB49',
     danger: '#EE5D70',
-    active: 'rgba(35, 80, 188, 0.3);',
+    active: 'rgba(35, 80, 188, 0.7);',
   },
 };
 
@@ -55,7 +55,8 @@ export const themeSettings = () => {
         sm: 600,
         md: 960,
         lg: 1280,
-        xl: 1920,
+        xl: 1536,
+        xxl: 1920,
       },
     },
 

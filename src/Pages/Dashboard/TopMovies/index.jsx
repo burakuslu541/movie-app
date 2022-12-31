@@ -89,65 +89,66 @@ const TopMovies = () => {
         borderRadius: 1,
         boxShadow: 1,
         p: '10px 20px',
-        width: '600px',
-        ml: '14px',
-        mt: '20px',
+        height: '335px',
       }}
     >
       <FlexBetween
         sx={{
           width: '100%',
-          mt: '19px',
         }}
       >
         <Typography variant="h6">Top Movies</Typography>
       </FlexBetween>
 
-      <Box
+      <TableContainer
+        component={Paper}
         sx={{
-          alignItems: 'center',
-          display: 'flex',
-          height: 350,
-          justifyContent: 'center',
-          width: '100%',
+          border: 'none',
+          boxShadow: 'none',
+
+          '& .MuiTableRow-root': {
+            height: '52px',
+          },
         }}
       >
-        <TableContainer component={Paper}>
-          <Table aria-label="simple table">
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{
-                    '&:last-child td, &:last-child th': { border: 0 },
-                  }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.id}
-                  </TableCell>
-                  <TableCell align="left">
-                    <ParentModal
-                      year={row.year}
-                      title={row.title}
-                      rating={row.rating}
-                    />
-                  </TableCell>
-                  <TableCell align="right">
-                    <StarIcon
-                      sx={{
-                        color: 'rgba(255, 171, 73, 1)',
-                        mb: '-6px',
-                        mr: '4px',
-                      }}
-                    />
-                    {row.rating}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+        <Table
+          aria-label="simple table"
+          size="small"
+          padding="checkbox"
+        >
+          <TableBody>
+            {rows.map((row, _index) => (
+              <TableRow
+                key={_index}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.id}
+                </TableCell>
+                <TableCell align="left">
+                  <ParentModal
+                    year={row.year}
+                    title={row.title}
+                    rating={row.rating}
+                  />
+                </TableCell>
+                <TableCell align="right">
+                  <StarIcon
+                    sx={{
+                      color: 'rgba(255, 171, 73, 1)',
+                      mb: '-6px',
+                      mr: '4px',
+                    }}
+                  />
+                  {row.rating}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Box>
   );
 };

@@ -30,6 +30,7 @@ const Movies = () => {
   const movieCountForPage = 6;
   const [page, setPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState([]);
+  const [error, setError] = useState(null);
   useEffect(() => {
     setMoviesPerPage([
       ...movies.slice(
@@ -49,11 +50,17 @@ const Movies = () => {
       await axios
         .get(url)
         .then((res) => {
-          setMovies(res.data.Search);
-          setTotalResults(res.data.Search.length);
+          if (res.data.Response === 'False') {
+            setError(res.data.Error);
+          } else {
+            setMovies(res.data.Search);
+            setTotalResults(res.data.Search.length);
+            setError(null);
+          }
         })
         .catch((err) => {
           console.log(err);
+          setError(err);
         });
     },
     [url]
@@ -64,6 +71,8 @@ const Movies = () => {
   const searchHandle = () => {
     setSelectedName(inputName);
     setSelectedYear(inputYear);
+    setInputYear('');
+    setInputName('');
   };
   const handleChange = (event, value) => {
     setPage(value);
@@ -74,7 +83,6 @@ const Movies = () => {
       ),
     ]);
   };
-
   return (
     <Box
       sx={{
@@ -82,35 +90,58 @@ const Movies = () => {
         borderRadius: 1,
         boxShadow: 1,
         p: '10px 20px',
-        width: '950px',
-        ml: '14px',
-        mt: '20px',
+        height: '335px',
       }}
     >
       <FlexBetween
         sx={{
           width: '100%',
-          mt: '5px',
           mb: '5px',
         }}
       >
-        <Typography variant="h6">Movies</Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            alignSelf: 'start',
+            mr: '5px',
+          }}
+        >
+          Movies
+        </Typography>
         <FlexBetween
           backgroundColor={theme.palette.background.alt}
           borderRadius="5px"
-          gap="5px"
-          width="214px"
           height="40px"
           border="1px solid rgba(76, 141, 235, 0.1865)"
+          sx={{
+            width: {
+              xs: '30%',
+              sm: '30%',
+              md: '214px',
+              lg: '214px',
+              xl: '214px',
+              xxl: '214px',
+            },
+            mr: '5px',
+          }}
         >
           <IconButton
             sx={{
+              width: {
+                xs: '30px',
+                sm: '30px',
+                md: '30px',
+                lg: '30px',
+                xl: '30px',
+              },
+
               color: 'rgba(76, 141, 235, 0.4)',
             }}
           >
             <Search />
           </IconButton>
           <InputBase
+            value={inputName}
             onChange={(e) => setInputName(e.target.value)}
             placeholder="Batman"
           />
@@ -118,23 +149,41 @@ const Movies = () => {
         <FlexBetween
           backgroundColor={theme.palette.background.alt}
           borderRadius="5px"
-          gap="5px"
-          width="110px"
           height="40px"
           border="1px solid rgba(76, 141, 235, 0.1865)"
           onClick={() =>
             inputName === '' ? alert('Please enter movie name') : null
           }
+          sx={{
+            width: {
+              xs: '30%',
+              sm: '30%',
+              md: '110px',
+              lg: '110px',
+              xl: '110px',
+              xxl: '110px',
+            },
+            mr: '5px',
+          }}
         >
           <IconButton
             sx={{
+              width: {
+                xs: '30px',
+                sm: '30px',
+                md: '30px',
+                lg: '30px',
+                xl: '30px',
+              },
               color: 'rgba(76, 141, 235, 0.4)',
             }}
           >
             <Search />
           </IconButton>
           <InputBase
+            type="number"
             disabled={inputName === ''}
+            value={inputYear}
             onChange={(e) => setInputYear(e.target.value)}
             placeholder="Year"
             sx={{
@@ -163,24 +212,45 @@ const Movies = () => {
           alignItems: 'center',
           display: 'flex',
           flexDirection: 'column',
-          height: 350,
+          height: 275,
           justifyContent: 'center',
           width: '100%',
         }}
       >
-        {moviesPerPage !== undefined && moviesPerPage.length !== 0 ? (
+        {error ? (
+          <Typography
+            sx={{
+              color: theme.palette.error.main,
+              fontSize: '14px',
+              fontWeight: 500,
+              textAlign: 'center',
+            }}
+          >
+            {error}
+          </Typography>
+        ) : moviesPerPage !== undefined &&
+          moviesPerPage.length !== 0 ? (
           <>
             <TableContainer
               component={Paper}
               sx={{
                 flexGrow: 1,
+                border: 'none',
+                boxShadow: 'none',
+                '& .MuiTableRow-root': {
+                  height: '52px',
+                },
               }}
             >
-              <Table aria-label="simple table">
+              <Table
+                aria-label="simple table"
+                size="small"
+                padding="checkbox"
+              >
                 <TableBody>
                   {moviesPerPage.map((row, index) => (
                     <TableRow
-                      key={row.name}
+                      key={index}
                       sx={{
                         '&:last-child td, &:last-child th': {
                           border: 0,
@@ -192,6 +262,7 @@ const Movies = () => {
                       </TableCell>
                       <TableCell align="left">
                         <ParentModal
+                          poster={row.Poster}
                           year={row.Year}
                           title={row.Title}
                         />
@@ -208,7 +279,7 @@ const Movies = () => {
             <Stack
               spacing={2}
               sx={{
-                mt: '8px',
+                mb: '5px',
               }}
             >
               <Pagination

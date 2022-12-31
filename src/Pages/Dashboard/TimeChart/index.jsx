@@ -53,18 +53,17 @@ const TimeChart = () => {
   return (
     <Box
       sx={{
-        width: '950px',
         backgroundColor: 'white',
         borderRadius: 1,
         boxShadow: 1,
         p: '10px 20px',
-        ml: '20px',
+        mb: '20px',
+        height: '351px',
       }}
     >
       <FlexBetween
         sx={{
           width: '100%',
-          mt: '19px',
         }}
       >
         <Typography variant="h6">Watch Time</Typography>
@@ -90,9 +89,16 @@ const TimeChart = () => {
         sx={{
           alignItems: 'center',
           display: 'flex',
-          height: 373,
+          height: '98%',
           justifyContent: 'center',
-          width: '100%',
+          width: {
+            xs: '99%',
+            sm: '99%',
+            md: '99%',
+            lg: '100%',
+            xl: '100%',
+            xxl: '100%',
+          },
         }}
       >
         <ResponsiveBar
@@ -105,7 +111,7 @@ const TimeChart = () => {
             bottom: 40,
             left: 40,
           }}
-          padding={0.6}
+          padding={0.8}
           groupMode="grouped"
           colors="rgba(90, 214, 176, 1)"
           axisTop={null}

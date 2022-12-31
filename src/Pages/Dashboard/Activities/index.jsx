@@ -3,7 +3,6 @@ import SendIcon from '@mui/icons-material/Send';
 import DownloadIcon from '@mui/icons-material/Download';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import FlexBetween from 'Components/FlexBetween';
-import { useState, useCallback } from 'react';
 const dataTopMoviesJson = {
   datasets: [
     {
@@ -114,15 +113,12 @@ const Activities = () => {
         borderRadius: 1,
         boxShadow: 1,
         p: '10px 20px',
-        pb: '100px',
-        width: '450px',
-        ml: '14px',
+        height: '705px',
       }}
     >
       <FlexBetween
         sx={{
           width: '100%',
-          mt: '19px',
           mb: '5px',
         }}
       >
@@ -135,6 +131,7 @@ const Activities = () => {
           height: '100%',
           justifyContent: 'center',
           width: '100%',
+          mt: '-30px',
         }}
       >
         <Box
@@ -143,7 +140,7 @@ const Activities = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            width: '180px',
+            width: '100px',
             borderRight: '1px solid #e0e0e0',
           }}
         >
@@ -156,7 +153,7 @@ const Activities = () => {
                 flexDirection: 'column',
                 justifyContent: 'start',
                 width: '100%',
-                height: '100px',
+                height: '82px',
                 p: '5px 30px',
                 position: 'relative',
                 mb: '20px',
@@ -219,12 +216,12 @@ const Activities = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
-                p: '5px 15px',
+                p: '5px 10px',
                 width: '90%',
-                height: '100px',
+                height: '95px',
                 border: '1px solid rgba(221, 233, 251, 1)',
                 borderRadius: '5px',
-                mb: '20px',
+                mb: '10px',
               }}
             >
               <Typography
