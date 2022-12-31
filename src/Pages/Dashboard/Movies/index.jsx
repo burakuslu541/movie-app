@@ -39,7 +39,7 @@ const Movies = () => {
   }, [movies, page]);
 
   const url = `https://www.omdbapi.com/?${
-    selectedName ? `s=${selectedName}` : ''
+    selectedName ? `s=${selectedName}` : 'Batman'
   }${selectedName && selectedYear ? `&y=${selectedYear}` : ''}${
     !selectedName && selectedYear ? `y=${selectedYear}` : ''
   }&apikey=2efbc5c`;
