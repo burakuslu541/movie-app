@@ -27,7 +27,7 @@ const Movies = () => {
   const [inputName, setInputName] = useState('');
   const [inputYear, setInputYear] = useState('');
   const [totalResults, setTotalResults] = useState(0);
-  const movieCountForPage = 6;
+  const movieCountForPage = 10;
   const [page, setPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState([]);
   const [error, setError] = useState(null);
