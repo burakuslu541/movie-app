@@ -38,7 +38,7 @@ const Movies = () => {
     ]);
   }, [movies, page]);
 
-  const url = `http://www.omdbapi.com/?${
+  const url = `https://www.omdbapi.com/?${
     selectedName ? `s=${selectedName}` : ''
   }${selectedName && selectedYear ? `&y=${selectedYear}` : ''}${
     !selectedName && selectedYear ? `y=${selectedYear}` : ''
